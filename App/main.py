@@ -7,7 +7,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
-from App.models import db, user, RegularUser
+from App.models import db, user 
 from App.database import init_db
 from App.config import config
 
@@ -56,7 +56,7 @@ def signin_page():
 @app.route('/signup', methods=['POST'])
 def signup_action():
   data = request.form  # get data from form submission
-  newuser = RegularUser(username=data['username'], email=data['email'], password=data['password'])  # create user object
+  newuser = user(username=data['username'], email=data['email'], password=data['password'])  # create user object
   try:
     db.session.add(newuser)
     db.session.commit()  # save user
@@ -72,7 +72,7 @@ def signup_action():
 @app.route('/login', methods=['POST'])
 def login_action():
   data = request.form
-  user = RegularUser.query.filter_by(username=data['username']).first()
+  user = user.query.filter_by(username=data['username']).first()
   if user and user.check_password(data['password']):  # check credentials
     flash('Logged in successfully.')  # send message to next page
     login_user(user)  # login the user
