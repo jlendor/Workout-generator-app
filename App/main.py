@@ -53,6 +53,21 @@ def create_app(config_overrides={}):
 def signin_page():
   return render_template('login.html')
 
+@app.route('/', methods=['GET'])
+@app.route('/app', methods=['GET'])
+def home_page():
+  return render_template('index.html')
+
+@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
+def signup_page():
+  return render_template('signup.html')
+
+@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
+def workout_page():
+  return render_template('workout.html')
+
 @app.route('/signup', methods=['POST'])
 def signup_action():
   data = request.form  # get data from form submission
@@ -62,11 +77,11 @@ def signup_action():
     db.session.commit()  # save user
     login_user(newuser)  # login the user
     flash('Account Created!')  # send message
-    return redirect(url_for('login.html'))  # redirect to homepage
+    return redirect(url_for('index.html'))  # redirect to homepage
   except Exception:  # attempted to insert a duplicate user
     db.session.rollback()
     flash("username or email already exists")  # error message
-  return redirect(url_for('signin_page'))
+  return redirect('signup.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -76,10 +91,10 @@ def login_action():
   if user and user.check_password(data['password']):  # check credentials
     flash('Logged in successfully.')  # send message to next page
     login_user(user)  # login the user
-    return redirect('/app')  # redirect to main page if login successful
+    return redirect('index.html')  # redirect to main page if login successful
   else:
     flash('Invalid username or password')  # send message to next page
-  return redirect('/')
+  return redirect('')
 
 
 
@@ -89,7 +104,6 @@ def login_action():
 def logout_action():
   logout_user()
   flash('Logged Out')
-  return redirect(url_for('signin_page'))
-
+  return redirect('login.html')
 
 
