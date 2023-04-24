@@ -54,7 +54,7 @@ def signin_page():
   return render_template('login.html')
 
 @app.route('/', methods=['GET'])
-@app.route('/app', methods=['GET'])
+@app.route('/', methods=['GET'])
 def home_page():
   return render_template('index.html')
 
@@ -77,14 +77,14 @@ def signup_action():
     db.session.commit()  # save user
     login_user(newuser)  # login the user
     flash('Account Created!')  # send message
-    return redirect(url_for('index.html'))  # redirect to homepage
+    return redirect('index.html')  # redirect to homepage
   except Exception:  # attempted to insert a duplicate user
     db.session.rollback()
     flash("username or email already exists")  # error message
   return redirect('signup.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('login.html', methods=['POST'])
 def login_action():
   data = request.form
   user = user.query.filter_by(username=data['username']).first()
