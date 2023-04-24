@@ -1,86 +1,82 @@
 <!doctype html>
 <html>
-  <head>
-  
+ <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{% block title %}{% endblock %}</title>
+    <!--Import Google Icon Font-->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <!--Let browser know website is optimized for mobile-->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>{% block title %}{% endblock %}</title>
 
-<style>
-    #logo {
-      height: 90px;
-    }
 
-    .center {
-  display: block;
-  margin-left: 45%;
-  width: 10%;
-}
-
-  
-
-</style>
+   <style>
+     #logo {
+       width: 200px;
+       height: 80px;
+       margin: 0 auto;
+     }
+   </style>
   </head>
   <body>
-    <nav class="green">
-        <div class="nav-wrapper">
-          <a href="index.html" class="brand-logo" ><img id="logo" class="center" src="./images/warriors.png" /></a>
-            <ul id="nav-mobile" class="right">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="signup.html">Sign up</a></li>
-                <li><a href="/">Users JS</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <nav class="white black-text" style="padding: 10px">
-        <div class="nav-wrapper">
-            <ul class="flashes">
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-      </nav>
-      {% endif %}
-    {% endwith %}
-
-    <div class="container" id="content">{% block content %}{% endblock %}</div>
-
-    <footer class="page-footer green">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Workout Warriors</h5>
-            <a onclick="getJoke();" class="grey-text text-lighten-3 modal-trigger" href="#joke1"
-              style="font-size: large;">What exercise do hairdressers do in the gym?
-              <br>Curls.</a>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">General</h5>
-            <ul id="foot">
-              <li><a class="grey-text text-lighten-3" href="https://docs.google.com/document/d/1u-H3ts439GEbrsgOj4gzKY5y2jaGyLYW9JSmPegvLpM/edit?usp=sharing" target="_blank">Documentation</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://github.com/jlendor/Workout-generator-app" target="_blank">Github</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          © 2023 Workout Warriors 
-          <a class="grey-text text-lighten-4 right" href="#!">Phone: (868)780-0488<br>Twitter: @WorkoutWarriorsTT</a>
-        </div>
-      </div>
+   <nav class="green">
+       <div class="nav-wrapper">
+         <a href="index.html" class="brand-logo" ><img id="logo" src="./images/warriors.png" /></a>
+           <ul id="nav-mobile" class="right">
+               <li><a href="index.html">Home</a></li>
+               <li><a href="workout.html">Workout</a></li>
+               <li><a href="/">Users JS</a></li>
+           </ul>
+       </div>
+   </nav>
   
+   {% with messages = get_flashed_messages() %}
+     {% if messages %}
+     <nav class="white black-text" style="padding: 10px">
+       <div class="nav-wrapper">
+           <ul class="flashes">
+           {% for message in messages %}
+             <li>{{ message }}</li>
+           {% endfor %}
+           </ul>
+       </div>
+     </nav>
+     {% endif %}
+   {% endwith %}
+  
+   <div class="container" id="content">{% block content %}{% endblock %}</div>
+
+
+   <footer class="page-footer green">
+     <div class="container">
+       <div class="row">
+         <div class="col l6 s12">
+           <h5 class="white-text">Workout Warriors</h5>
+           <a onclick="getJoke();" class="grey-text text-lighten-3 modal-trigger" href="#joke1"
+             style="font-size: large;">What exercise do hairdressers do in the gym?
+             <br>Curls.</a>
+         </div>
+         <div class="col l4 offset-l2 s12">
+           <h5 class="white-text">General</h5>
+           <ul id="foot">
+             <li><a class="grey-text text-lighten-3" href="https://docs.google.com/document/d/1u-H3ts439GEbrsgOj4gzKY5y2jaGyLYW9JSmPegvLpM/edit?usp=sharing" target="_blank">Documentation</a></li>
+             <li><a class="grey-text text-lighten-3" href="https://github.com/jlendor/Workout-generator-app" target="_blank">Github</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <div class="footer-copyrigh">
+       <div class="container">
+          © 2023 Workout Warriors
+         <a class="grey-text text-lighten-4 right" href="#!">Phone: (868)780-0488<br>Twitter: @WorkoutWarriorsTT</a>
+       </div>
+     </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </body>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ </body>
 </html>
+
+
