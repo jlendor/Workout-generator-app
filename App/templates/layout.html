@@ -11,19 +11,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %}</title>
 
+<style>
+    #logo {
+      height: 90px;
+    }
+
+    .center {
+  display: block;
+  margin-left: 45%;
+  width: 10%;
+}
+
+  
+
+</style>
   </head>
   <body>
     <nav class="green">
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>
         <div class="nav-wrapper">
-            <ul id="nav-mobile" class="left">
+          <a href="index.html" class="brand-logo" ><img id="logo" class="center" src="./images/warriors.png" /></a>
+            <ul id="nav-mobile" class="right">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="workout.html">Workout</a></li>
                 <li><a href="/">Users JS</a></li>
             </ul>
         </div>
-      </div>
     </nav>
     
     {% with messages = get_flashed_messages() %}
