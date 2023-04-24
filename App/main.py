@@ -7,7 +7,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
-from models import db, Admin, RegularUser
+from App.models import db, user, RegularUser
 from App.database import init_db
 from App.config import config
 
