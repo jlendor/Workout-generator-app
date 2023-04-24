@@ -50,20 +50,20 @@ def create_app(config_overrides={}):
 
 @app.route('/app', methods=['GET'])
 @login_required
-def signin_page():
+def login_page():
   return render_template('login.html')
 
-@app.route('/app', methods=['GET'])
+@app.route('/', methods=['GET'])
 @app.route('/', methods=['GET'])
 def home_page():
   return render_template('index.html')
 
-@app.route('/app', methods=['GET'])
+@app.route('/', methods=['GET'])
 @app.route('/', methods=['GET'])
 def signup_page():
   return render_template('signup.html')
 
-@app.route('/app', methods=['GET'])
+@app.route('/', methods=['GET'])
 @app.route('/', methods=['GET'])
 def workout_page():
   return render_template('workout.html')
@@ -84,7 +84,7 @@ def signup_action():
   return redirect('signup.html')
 
 
-@app.route('/signin', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login_action():
   data = request.form
   user = user.query.filter_by(username=data['username']).first()
