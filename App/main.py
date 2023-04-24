@@ -1,13 +1,13 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
 app = Flask(__name__)
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
-
+from models import db, Admin, RegularUser
 from App.database import init_db
 from App.config import config
 
@@ -62,7 +62,7 @@ def signup_action():
     db.session.commit()  # save user
     login_user(newuser)  # login the user
     flash('Account Created!')  # send message
-    return redirect(rl_fuor('login.html'))  # redirect to homepage
+    return redirect(url_for('login.html'))  # redirect to homepage
   except Exception:  # attempted to insert a duplicate user
     db.session.rollback()
     flash("username or email already exists")  # error message
