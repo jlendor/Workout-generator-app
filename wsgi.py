@@ -1,5 +1,6 @@
 import click, pytest, sys
 from flask import Flask
+app = Flask(__name__)
 from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
