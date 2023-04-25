@@ -5,32 +5,24 @@
 {{ super() }}
 
 {% block content %}
-    <h1>Workout Warriors</h1>
-    <p>Access a vast library of workouts equipped with tutorials and alternative execises for each body part, and create routines based on your needs! </p>
-    
+<main class="container" style="margin-top:100px">
+  <form class="card col s12" id="loginForm" method="POST" action="{{ url_for('login_action') }}" style="padding:1em">
+      <div class="row">
+          <div class="input-field col s12">
+              <input placeholder="username" name="username" type="text" class="validate">
+              <label for="first_name">Username</label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+              <input name="password" type="password" class="validate">
+              <label for="password">Password</label>
+          </div>
+      </div>
+      <div class="card-action">
+          <input type="submit" class="blue text-white btn">
+      </div>
+  </form>
+</main> 
 
-
-
-    <main class="container" style="margin-top:100px">
-        <form class="card col s12" id="loginForm" method="POST" action="/login" style="padding:1em">
-     
-           <div class="row">
-             <div class="input-field col s12">
-               <input placeholder="username" name="username" type="text" class="validate">
-               <label for="first_name">Username</label>
-             </div>
-           </div>
-           <div class="row">
-             <div class="input-field col s12">
-               <input name="password" type="password" class="validate">
-               <label for="password">Password</label>
-             </div>
-           </div>
-           <div class="card-action">
-             <input type="submit" class="blue text-white btn">
-           </div>
-       </form>
-     </main> 
-
-     
 {% endblock %}
