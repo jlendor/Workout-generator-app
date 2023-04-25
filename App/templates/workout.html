@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}Flask MVC App{% endblock %}
+{% block page %}home{% endblock %}
+
+{{ super() }}
+
+{% block link %}
+<ul id="nav-mobile" class="right">
+<li><a href="login.html">Logout</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Workout warriors</h1>
+    <p>Access a vast library of workouts equipped with tutorials and alternative execises for each body part, and create routines based on your needs!</p>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="crunches.jpg" class="d-block w-100" alt="...">
+              </div>              
+          </div>
+          <div class="carousel-item">
+            <img src="pushups/800x400?text=Slide+2" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="squats=Slide+3" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+{% endblock %}
