@@ -48,14 +48,14 @@ def create_app(config_overrides={}):
 
 app = create_app()
 
-@app.route('/', methods=['GET'])
+@app.route('/app', methods=['GET'])
 @login_required
 def login_page():
     return render_template('login.html')
 
 @app.route('/app', methods=['GET'])
 @login_required
-def app_page():
+def home_page():
     return render_template('index.html')
 
 @app.route('/signup', methods=['GET'])
