@@ -1,5 +1,6 @@
 import os
 from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
+app = Flask(__name__)
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
@@ -33,7 +34,7 @@ def create_app(config_overrides={}):
     configure_app(app, config, config_overrides)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.config['SERVER_NAME'] = '0.0.0.0'
+    app.config['SEVER_NAME'] = '0.0.0.0'
     app.config['PREFERRED_URL_SCHEME'] = 'https'
     app.config['UPLOADED_PHOTOS_DEST'] = "App/uploads"
     CORS(app)
@@ -46,53 +47,57 @@ def create_app(config_overrides={}):
     app.app_context().push()
     return app
 
-app = create_app()
 
 @app.route('/app', methods=['GET'])
 @login_required
 def login_page():
-    return render_template('login.html')
+  return render_template('login.html')
 
 @app.route('/app', methods=['GET'])
 @login_required
-def home_page():
+def app_page():
     return render_template('index.html')
 
-@app.route('/signup', methods=['GET'])
+@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def signup_page():
-    return render_template('signup.html')
+  return render_template('signup.html')
 
-@app.route('/workout', methods=['GET'])
-@login_required
+@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def workout_page():
-    return render_template('workout.html')
+  return render_template('workout.html')
 
 @app.route('/signup', methods=['POST'])
 def signup_action():
-    data = request.form  # get data from form submission
-    newuser = user(username=data['username'], email=data['email'], password=data['password'])  # create user object
-    try:
-        db.session.add(newuser)
-        db.session.commit()  # save user
-        login_user(newuser)  # login the user
-        flash('Account Created!')  # send message
-        return redirect(url_for('signup_page'))  # redirect to homepage
-    except Exception:  # attempted to insert a duplicate user
-        db.session.rollback()
-        flash("username or email already exists")  # error message
-    return redirect(url_for('login_page'))
+  data = request.form  # get data from form submission
+  newuser = user(username=data['username'], email=data['email'], password=data['password'])  # create user object
+  try:
+    db.session.add(newuser)
+    db.session.commit()  # save user
+    login_user(newuser)  # login the user
+    flash('Account Created!')  # send message
+    return redirect('index.html')  # redirect to homepage
+  except Exception:  # attempted to insert a duplicate user
+    db.session.rollback()
+    flash("username or email already exists")  # error message
+  return redirect('signup.html')
+
 
 @app.route('/login', methods=['POST'])
 def login_action():
-    data = request.form
-    user = user.query.filter_by(username=data['username']).first()
-    if user and user.check_password(data['password']):  # check credentials
-      flash('Logged in successfully.')  # send message to next page
-      login_user(user)  # login the user
-      return redirect('index.html')  # redirect to main page if login successful
-    else:
-      flash('Invalid username or password')  # send message to next page
-      return redirect('')
+  data = request.form
+  user = user.query.filter_by(username=data['username']).first()
+  if user and user.check_password(data['password']):  # check credentials
+    flash('Logged in successfully.')  # send message to next page
+    login_user(user)  # login the user
+    return redirect('index.html')  # redirect to main page if login successful
+  else:
+    flash('Invalid username or password')  # send message to next page
+  return redirect('')
+
+
+
 
 @app.route('/logout', methods=['GET'])
 @login_required
@@ -100,3 +105,5 @@ def logout_action():
   logout_user()
   flash('Logged Out')
   return redirect('login.html')
+
+
